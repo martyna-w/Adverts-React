@@ -1,24 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+
 import AdvertContainer from "./components/AdvertContainer";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 
-const baseURL = "localhost:3000/"
+class App extends React.Component {
+  render(){
+    const state = {adverts: [], advert: null, user:null}
 
-const App = () => {
-
-
-  return(
-    <div>
-      <header>
-      <Navbar />
-      </header>
-      <main>
-        <Login />
-        <AdvertContainer /> 
-      </main>    
-    </div>    
-  )
+    return(
+      <div>
+        <header>
+        <Navbar />
+        </header>
+        <main>
+          <Login />
+          <AdvertContainer /> 
+        </main>    
+      </div>    
+    )
+  } 
 }
 
 export default App;
