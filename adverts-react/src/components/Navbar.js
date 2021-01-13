@@ -1,7 +1,11 @@
-import React from "react"
+import React, {useState} from "react"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
+    const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+    const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+
     function AskForSignin() {
         return (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -19,7 +23,7 @@ const Navbar = () => {
         return (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {props.user.login}
                     </Link>
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -28,12 +32,12 @@ const Navbar = () => {
                     </ul>
                 </li>
                 <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    User
+                <Link className="nav-link dropdown-toggle" to="#" id="advertsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Your Adverts
                 </Link>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><Link to="#" className="dropdown-item">Log out</Link></li>
-                    <li><Link to="#" className="dropdown-item">Delete account</Link></li>
+                    <li><Link to="#" className="dropdown-item">Add</Link></li>
+                    <li><Link to="#" className="dropdown-item">Your Adverts</Link></li>
                 </ul>
                 </li>
             </ul>
@@ -52,10 +56,10 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">Adverts</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded={!isNavCollapsed ? true : false} aria-label="Toggle navigation" onClick={handleNavCollapse}>
                 <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarSupportedContent">
                     <Display />
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

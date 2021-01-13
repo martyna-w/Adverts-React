@@ -16,7 +16,7 @@ class App extends React.Component {
         <Navbar />
         </header>
         <main>
-        <Switch>
+          <Switch>
             <Route exact path="/" component={AdvertsList} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
