@@ -1,7 +1,7 @@
 import React from "react"
 import Advert from "./Advert"
 
-const AdvertContainer = () => {
+const AdvertsList = () => {
     return(
         <div className="album py-5 bg-light">
             <div className="container">
@@ -15,4 +15,4 @@ const AdvertContainer = () => {
     )
 }
 
-export default AdvertContainer
+export default AdvertsList
