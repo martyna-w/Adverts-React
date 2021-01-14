@@ -2,6 +2,7 @@ import React from "react"
 import "../css/sign.css"
 import CallApi from "../api/service"
 import { withAlert } from "react-alert"
+import { withRouter } from "react-router";
 
 class Register extends React.Component{
     constructor(props){
@@ -58,6 +59,7 @@ class Register extends React.Component{
                         password: "",
                         confirmedPassword: ""
                     })
+                    this.props.history.push('/login');
                 } else {
                     this.props.alert.show("Thre was an error while creating your account")
                 }
@@ -94,4 +96,4 @@ class Register extends React.Component{
     }
 }
 
-export default withAlert()(Register)
+export default withAlert()(withRouter(Register))
