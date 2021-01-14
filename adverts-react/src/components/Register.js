@@ -59,7 +59,7 @@ class Register extends React.Component{
                         password: "",
                         confirmedPassword: ""
                     })
-                    this.props.history.push('/login');
+                    this.redirectToLogin()
                 } else {
                     this.props.alert.show("Thre was an error while creating your account")
                 }

@@ -1,10 +1,12 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+
+    const usrName = sessionStorage.getItem("userEmail")
 
     function AskForSignin() {
         return (
@@ -24,7 +26,7 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {props.user.login}
+                        Hi, {sessionStorage.getItem("userEmail")}
                     </Link>
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><Link to="#" className="dropdown-item">Log out</Link></li>
@@ -46,7 +48,8 @@ const Navbar = () => {
     }
 
     function Display(props) {
-        if (props.user != null){
+        const user = sessionStorage.getItem("userEmail")
+        if (user != null){
             return <ShowUserPanel/>
         } 
         return <AskForSignin/>
