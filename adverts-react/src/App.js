@@ -5,10 +5,12 @@ import AdvertsList from "./components/AdvertsList";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
+import { withRouter } from "react-router";
 
 class App extends React.Component {
   render(){
     const state = {adverts: [], advert: null, user:null}
+    const { history } = this.props
 
     return(
       <div>

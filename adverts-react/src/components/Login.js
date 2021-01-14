@@ -11,7 +11,7 @@ const Login = () => {
                 <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required="" autoFocus=""/>
                 <label htmlFor="inputPassword" className="visually-hidden">Password</label>
                 <input type="password" id="inputPassword" className="form-control" placeholder="Password" required=""/>
-                <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <button className="w-100 btn btn-lg btn-dark" type="submit">Sign in</button>
                 <p className="mt-5 mb-3 text-muted">Adverts 2021</p>
             </form>
         </div>
