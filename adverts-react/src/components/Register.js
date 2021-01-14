@@ -1,9 +1,9 @@
 import React from "react"
 import "../css/sign.css"
 import CallApi from "../api/service"
-import {useHistory} from 'react-router-dom';
+import { withAlert } from "react-alert"
 
-export default class Register extends React.Component{
+class Register extends React.Component{
     constructor(props){
         super(props)
         this.onLoginChanged = this.onLoginChanged.bind(this)
@@ -13,9 +13,7 @@ export default class Register extends React.Component{
         this.state = {
             login: "",
             password: "",
-            confirmedPassword: "",
-
-            submitted: false
+            confirmedPassword: ""
         }
     }
     
@@ -53,14 +51,25 @@ export default class Register extends React.Component{
         if (this.state.password === this.state.confirmedPassword){
             CallApi.register(user)
             .then(res => {
-                console.log(res)
-                this.redirectToLogin()
+                if (res.status === 201){
+                    this.props.alert.show("Account has been succesfully created")
+                    this.setState({
+                        login: "",
+                        password: "",
+                        confirmedPassword: ""
+                    })
+                } else {
+                    this.props.alert.show("Thre was an error while creating your account")
+                }
+                
             })
             .catch(err =>{
                 console.log(err)
+                this.props.alert.show("Error connecting to remote service")
+                
             })
         } else {
-            console.log("Passwords are incorrect")
+            this.props.alert.show("Passwords are different");
         }
         
         
@@ -84,3 +93,5 @@ export default class Register extends React.Component{
         )
     }
 }
+
+export default withAlert()(Register)
