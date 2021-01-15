@@ -3,7 +3,6 @@ import "../css/sign.css"
 import CallApi from "../api/service"
 import { withAlert } from "react-alert"
 import { withRouter } from "react-router";
-import Navbar from "./Navbar"
 
 class Login extends React.Component{
     constructor(props){

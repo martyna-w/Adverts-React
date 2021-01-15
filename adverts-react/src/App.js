@@ -10,7 +10,7 @@ import Register from "./components/Register";
 class App extends React.Component {
 
   render(){
-    const state = {adverts: [], advert: null, user:null}
+    //const state = {adverts: [], advert: null, user:null}
 
     return(
       <div>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-    const [userEmail, setUserEmail] = useState() //Jakby sie ksuło to sessionStorage.getItem("userEmail")
+    const [userEmail, setUserEmail] = useState() //If something broke -> sessionStorage.getItem("userEmail")
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -13,6 +13,10 @@ const Navbar = () => {
         setUserEmail(sessionStorage.getItem("userEmail"))
         console.log()
     };
+
+    useEffect(()=>{
+        setUserEmail(sessionStorage.getItem("userEmail")) //If user refreshed the page
+    },[])
 
     function AskForSignin() {
         return (
