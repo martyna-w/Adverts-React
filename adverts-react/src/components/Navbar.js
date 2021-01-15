@@ -1,11 +1,16 @@
-import React, {useState, useEffect} from "react"
-import { Link } from "react-router-dom"
+import React, {useState, useEffect, useCallback} from "react"
+import { Link, useHistory } from "react-router-dom"
+import { Dropdown } from 'react-bootstrap';
 
 
 
 const Navbar = () => {
+    
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
     const [userEmail, setUserEmail] = useState() //If something broke -> sessionStorage.getItem("userEmail")
+
+    const history = useHistory();
+    const redirectToLogin = useCallback(() => history.push('/login'), [history]);
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -33,26 +38,36 @@ const Navbar = () => {
 
     function ShowUserPanel(props) {
         return (
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hi, {userEmail}
-                    </Link>
-                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><Link to="#" className="dropdown-item">Log out</Link></li>
-                        <li><Link to="#" className="dropdown-item">Delete account</Link></li>
-                    </ul>
-                </li>
-                <li className="nav-item dropdown">
-                <Link className="nav-link dropdown-toggle" to="#" id="advertsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Your Adverts
-                </Link>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><Link to="#" className="dropdown-item">Add</Link></li>
-                    <li><Link to="#" className="dropdown-item">Your Adverts</Link></li>
-                </ul>
-                </li>
-            </ul>
+            <div className="navbar-nav me-auto mb-2 mb-lg-0">
+                <div>
+                    <Dropdown className="nav-item dropdown">
+                        <Dropdown.Toggle className= "nav-link dropdown-toggle"
+                        variant="dark btn-block" 
+                        id="dropdown-basic">
+                            Hi, {userEmail}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu className="dropdown-menu">
+                            <Dropdown.Item onClick={redirectToLogin}>Log out</Dropdown.Item>
+                            <Dropdown.Item href="#">Delete account</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+                <div>
+                    <Dropdown className="nav-item dropdown">
+                        <Dropdown.Toggle className= "nav-link dropdown-toggle"
+                        variant="dark btn-block" 
+                        id="dropdown-basic">
+                            Your adverts
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu className="dropdown-menu">
+                            <Dropdown.Item href="#" >Add</Dropdown.Item>
+                            <Dropdown.Item href="#">Show my adverts</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+            </div>
         )
 
     }
