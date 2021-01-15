@@ -1,12 +1,18 @@
 import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom"
 
+
+
 const Navbar = () => {
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+    const [userEmail, setUserEmail] = useState() //Jakby sie ksuło to sessionStorage.getItem("userEmail")
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
-    const usrName = sessionStorage.getItem("userEmail")
+    window.updateNavbar = () => {
+        setUserEmail(sessionStorage.getItem("userEmail"))
+        console.log()
+    };
 
     function AskForSignin() {
         return (
@@ -26,7 +32,7 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hi, {sessionStorage.getItem("userEmail")}
+                        Hi, {userEmail}
                     </Link>
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><Link to="#" className="dropdown-item">Log out</Link></li>

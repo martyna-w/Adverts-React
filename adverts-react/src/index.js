@@ -18,7 +18,7 @@ const options = {
 }
 
 
-ReactDOM.render(
+const TopParent = ReactDOM.render(
   <BrowserRouter>
     <AlertProvider template={AlertTemplate} {...options}>
       <App />

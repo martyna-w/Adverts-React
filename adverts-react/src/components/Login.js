@@ -32,6 +32,10 @@ class Login extends React.Component{
     redirectToAdverts(){
         this.props.history.push("/")
     }
+    
+    triggerNavbar(){
+        window.updateNavbar()
+    }
 
     login(e){
         e.preventDefault()
@@ -47,8 +51,8 @@ class Login extends React.Component{
                     sessionStorage.setItem("userEmail", user.email)
                     sessionStorage.setItem("userId", res.data.userId)
                     sessionStorage.setItem("userToken", res.data.token)
-                    console.log(sessionStorage.getItem("user"))
                     this.props.alert.show("Succesfully logged")
+                    this.triggerNavbar()
                     this.redirectToAdverts()
                 } else {
                     this.props.alert.show("Could not login, check credentials")

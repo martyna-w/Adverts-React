@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 
 class App extends React.Component {
+
   render(){
     const state = {adverts: [], advert: null, user:null}
 
