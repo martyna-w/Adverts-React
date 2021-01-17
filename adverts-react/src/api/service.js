@@ -13,16 +13,34 @@ class Service {
         return common.get(`/adverts/user/${id}`)
     }
 
-    postAdvert(data) {
-        return common.post("/adverts/", data)
+    postAdvert(data, token) {
+        const formData = new FormData();
+        formData.append('title', data.title)
+        formData.append('description', data.description)
+        formData.append('advertImage', data.advertImage)
+        console.log("Data succesfully appended")
+        return common.post("/adverts/", formData, {
+            headers: {
+                Authorization: 'Bearer ' + token,
+                'content-type': 'multipart/form-data'
+            }
+        }).then().catch(err => console.log(err))
     }
 
-    deleteAdvert(id){
-        return common.delete(`/adverts/${id}`)
+    deleteAdvert(id, token){
+        return common.delete(`/adverts/${id}`, {
+            headers: {
+                Authorization: 'Bearer ' + token,
+            }
+        })
     }
 
-    patchAdvert(id,data){
-        return common.patch(`/adverts/${id}`, data)
+    patchAdvert(id,data, token){
+        return common.patch(`/adverts/${id}`, data ,{
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
     }
 
     register(user){
@@ -33,8 +51,12 @@ class Service {
         return common.post("/users/login/", user)
     }
 
-    accountDelete(id) {
-        return common.delete(`/users/${id}`)
+    accountDelete(id, token) {
+        return common.delete(`/users/${id}`, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
     }
 
 }

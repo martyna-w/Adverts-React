@@ -11,6 +11,7 @@ const Navbar = () => {
 
     const history = useHistory();
     const redirectToLogin = useCallback(() => history.push('/login'), [history]);
+    const redirectToAddAdvert = useCallback(() => history.push('/add-advert'), [history]);
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -62,7 +63,7 @@ const Navbar = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="dropdown-menu">
-                            <Dropdown.Item href="#" >Add</Dropdown.Item>
+                            <Dropdown.Item onClick={redirectToAddAdvert} >Add advert</Dropdown.Item>
                             <Dropdown.Item href="#">Show my adverts</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>

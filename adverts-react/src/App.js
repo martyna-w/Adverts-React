@@ -6,6 +6,7 @@ import AdvertsList from "./components/AdvertsList";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
+import AddAdvert from "./components/AddAdvert"
 
 class App extends React.Component {
 
@@ -22,6 +23,7 @@ class App extends React.Component {
             <Route exact path="/" component={AdvertsList} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/add-advert" component={AddAdvert} />
           </Switch>
         </main>    
       </div>    
