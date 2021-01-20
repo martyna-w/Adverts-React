@@ -32,6 +32,12 @@ class Details extends React.Component{
         })
     }
 
+    edit(e, id){
+        e.preventDefault()
+
+        this.props.history.push(`/edit-advert/${id}`)
+    }
+
     render(){
         const baseUrl = "http://localhost:3000/"
 
@@ -67,8 +73,8 @@ class Details extends React.Component{
                                     <p className="card-text">{advert[0].description}</p>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-primary">Edit</button>
-                                        <button type="button" className="btn btn-sm btn-outline-danger">Delete</button>
+                                        <button type="button" className="btn btn-sm btn-outline-primary" onClick={(e) => {this.edit(e, advert[0]._id)}}>Edit</button>
+                                        <button type="button" className="btn btn-sm btn-outline-danger" >Delete</button>
                                         </div>
                                         <small className="text-muted">Author: {advert[0].owner}</small>
                                     </div>
