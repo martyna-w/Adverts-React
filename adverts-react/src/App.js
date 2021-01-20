@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import AddAdvert from "./components/AddAdvert"
+import Details from "./components/Details";
 
 class App extends React.Component {
 
@@ -19,13 +20,16 @@ class App extends React.Component {
         <Navbar />
         </header>
         <main>
-          <Switch>                    
+          <Switch>
+                          
+                        
+            <Route path="/user/:userId" component={AdvertsList} key={window.location.pathname} />
+            <Route path="/details/:advertId" component={Details} />    
+            <Route path="/id/:advertId" component={AdvertsList} key={window.location.pathname}/> 
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/add-advert" component={AddAdvert} />
-            <Route exact path="/" component={AdvertsList} />
-            <Route path="/user/:userId" component={AdvertsList} />
-            <Route path="/:advertId" component={AdvertsList} />  
+            <Route exact path="/home" component={AdvertsList} key={window.location.pathname}/>          
           </Switch>
         </main>    
       </div>    

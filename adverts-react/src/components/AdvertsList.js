@@ -10,12 +10,18 @@ class AdvertsList extends React.Component {
 
         this.state = {
             adverts: [],
+            advertId: "",
+            userId: ""
         }
     }
 
     componentDidMount(){
         const advertId = this.props.match.params.advertId;
         const userId = this.props.match.params.userId;
+        this.setState({
+            advertId: advertId,
+            userId: userId
+        })
         if (advertId != null){
             CallApi.getAdvertById(advertId)
             .then(res => {
@@ -62,6 +68,12 @@ class AdvertsList extends React.Component {
             })
         }
         
+    }
+
+    componentDidUpdate(){
+        if (this.state.userId !== this.props.match.params.userId || this.state.advertId !== this.props.match.params.advertId){
+            this.componentDidMount()
+        }
     }
 
     getParams(){

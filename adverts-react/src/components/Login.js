@@ -29,7 +29,7 @@ class Login extends React.Component{
     }
 
     redirectToAdverts(){
-        this.props.history.push("/")
+        this.props.history.push("/home")
     }
     
     triggerNavbar(){

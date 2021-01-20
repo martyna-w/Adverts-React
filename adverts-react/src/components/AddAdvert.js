@@ -19,7 +19,7 @@ class AddAdvert extends React.Component {
 
     componentDidMount(){
         if (sessionStorage.getItem("userEmail") === null){
-            this.props.history.push("/")
+            this.props.history.push("/home")
             this.props.alert.show("You must be logged in to access this operation")
         }
     }
@@ -56,7 +56,7 @@ class AddAdvert extends React.Component {
             .then(res => {
                 if (res.status === 201){
                     this.props.alert.show("Advert added succesfully")
-                    this.props.history.push("/")
+                    this.props.history.push("/home")
                 } else {
                     this.props.alert.show("Error processing your request")
                 }

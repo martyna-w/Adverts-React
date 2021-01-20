@@ -12,6 +12,7 @@ const Navbar = () => {
     const history = useHistory();
     const redirectToLogin = useCallback(() => history.push('/login'), [history]);
     const redirectToAddAdvert = useCallback(() => history.push('/add-advert'), [history]);
+    const redirectToMyAdverts = useCallback(() => history.push(`/user/${sessionStorage.getItem("userEmail")}`), [history]);
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -64,7 +65,7 @@ const Navbar = () => {
 
                         <Dropdown.Menu className="dropdown-menu">
                             <Dropdown.Item onClick={redirectToAddAdvert} >Add advert</Dropdown.Item>
-                            <Dropdown.Item href="#">Show my adverts</Dropdown.Item>
+                            <Dropdown.Item onClick={redirectToMyAdverts}>Show my adverts</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -84,7 +85,7 @@ const Navbar = () => {
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Adverts</Link>
+                <Link className="navbar-brand" to="/home">Adverts</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded={!isNavCollapsed ? true : false} aria-label="Toggle navigation" onClick={handleNavCollapse}>
                 <span className="navbar-toggler-icon"></span>
                 </button>
