@@ -2,7 +2,8 @@ import common from "./common"
 
 class Service {
     getAllAdverts(){
-        return common.get("/adverts/")
+        
+        return common.get("/adverts")
     }
 
     getAdvertById(id) {
