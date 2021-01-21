@@ -26,13 +26,17 @@ App has the home page that is accessible for all users. Advert owners have addit
 
 ![View adverts](./scr/view_adverts.gif)
 
+### User panel
+Navnbar is dynamically rendered to provide user panel.
+
+![user_panel](./scr/menus.gif)
+
+## Methods
+
+![supported_methods](./scr/delete_advert.gif)
+
 ### Additional features
 
-Deleting account also removes all user posts (but that's an api's feature)
-
-![Account delete](./scr/delete_account.gif)
-
-Users have feature to see just their adverts
-
-![View adverts](./scr/show_adverts.gif)
-
+* deleting account also removes all user posts (but that's an api's feature)
+* logged users have feature to see just their adverts
+* app support allerts
