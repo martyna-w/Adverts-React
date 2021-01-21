@@ -1,6 +1,7 @@
 import common from "./common"
 
 class Service {
+
     getAllAdverts(){
         
         return common.get("/adverts")
@@ -36,12 +37,21 @@ class Service {
         })
     }
 
-    patchAdvert(id,data, token){
-        return common.patch(`/adverts/${id}`, data ,{
+    patchAdvert(data, token){
+        const formData = new FormData();
+        const id = data.id
+        formData.append('title', data.title)
+        formData.append('description', data.description)
+        if (data.advertImage !== null)
+            formData.append('advertImage', data.advertImage)
+        console.log("Data succesfully appended")
+        console.log(formData)
+        return common.patch(`/adverts/${id}`, formData ,{
             headers: {
-                Authorization: 'Bearer ' + token
+                Authorization: 'Bearer ' + token,
+                'content-type': 'multipart/form-data'
             }
-        })
+        }).then().catch(err => {console.log(err)})
     }
 
     register(user){

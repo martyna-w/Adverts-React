@@ -38,6 +38,25 @@ class Details extends React.Component{
         this.props.history.push(`/edit-advert/${id}`)
     }
 
+    removeAdvert(e, id){
+        e.preventDefault()
+
+        var token = sessionStorage.getItem("userToken")
+        CallApi.deleteAdvert(id, token)
+            .then(res =>{
+                if (res.status === 200){
+                    this.props.alert.show("Advert deleted")
+                    this.props.history.push("/home")
+                } else {
+                    this.props.alert.show("Request didn't pass")
+                }
+            })
+            .catch(err =>{
+                console.log(err)
+                this.props.alert.show("An error acured while processing your request")
+            })
+    }
+
     render(){
         const baseUrl = "http://localhost:3000/"
 
@@ -57,6 +76,20 @@ class Details extends React.Component{
             }
         }
 
+        function ShowButtons ({context}){
+            var currentUser = sessionStorage.getItem("userEmail")
+            if (currentUser === advert[0].owner){
+                return (
+                    <div className="btn-group">
+                        <button type="button" className="btn btn-sm btn-outline-primary" onClick={(e) => {context.edit(e, advert[0]._id)}}>Edit</button>
+                        <button type="button" className="btn btn-sm btn-outline-danger" onClick={(e) => {context.removeAdvert(e, advert[0]._id)}}>Delete</button>
+                    </div>
+                )
+            } else {
+                return null
+            }      
+        }
+
         const {advert} = this.state
         if (!advert) {
             return <div>Loading Advert</div>
@@ -72,10 +105,7 @@ class Details extends React.Component{
                                     <div className="card-body">
                                     <p className="card-text">{advert[0].description}</p>
                                     <div className="d-flex justify-content-between align-items-center">
-                                        <div className="btn-group">
-                                        <button type="button" className="btn btn-sm btn-outline-primary" onClick={(e) => {this.edit(e, advert[0]._id)}}>Edit</button>
-                                        <button type="button" className="btn btn-sm btn-outline-danger" >Delete</button>
-                                        </div>
+                                        <ShowButtons context={this}/>
                                         <small className="text-muted">Author: {advert[0].owner}</small>
                                     </div>
                                     </div>

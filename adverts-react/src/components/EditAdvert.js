@@ -14,6 +14,7 @@ class EditAdvert extends React.Component {
             id: "",
             title: "",
             description: "",
+            imageUrl: "",
             advertImage: null
         }
     }
@@ -30,7 +31,8 @@ class EditAdvert extends React.Component {
                     this.setState({
                         id: res.data[0]._id,
                         title: res.data[0].title,
-                        description: res.data[0].description
+                        description: res.data[0].description,
+                        imageUrl: res.data[0].imageUrl
                     })
                 } else if (res.status === 204){
                     this.props.alert.show("No advert with this id")
@@ -41,6 +43,7 @@ class EditAdvert extends React.Component {
                 console.log(err)
                 this.props.alert.show("Error connecting to remote service")
             })
+            
         }
     }
 
@@ -66,16 +69,15 @@ class EditAdvert extends React.Component {
         e.preventDefault() 
 
         var userToken = sessionStorage.getItem("userToken")
-        var id = this.state.id
         var data = {
+            id: this.state.id,
             title: this.state.title,
             description: this.state.description,
             advertImage: this.state.advertImage
         }
-
-        CallApi.patchAdvert(id, data, userToken) //Jeszcze id
+        CallApi.patchAdvert(data, userToken)
             .then(res => {
-                if (res.status === 201){
+                if (res.status === 200){
                     this.props.alert.show("Advert modified succesfully")
                     this.props.history.push("/home")
                 } else {
@@ -102,11 +104,11 @@ class EditAdvert extends React.Component {
                         </div>
                         <div className="form-group py-1">
                             <label htmlFor="title">Title</label>
-                            <input type="text" className="form-control" id="title" placeholder="Your advert title" onChange={this.onTitleChanged}/>
+                            <input type="text" className="form-control" id="title" placeholder="Your advert title" onChange={this.onTitleChanged} defaultValue={this.state.title}/>
                         </div>
                         <div className="form-group py-1">
                             <label htmlFor="description">Description</label>
-                            <textarea className="form-control" id="description" rows="5" placeholder="Your advert description" onChange={this.onDescriptionChanged}></textarea>
+                            <textarea className="form-control" id="description" rows="5" placeholder="Your advert description" onChange={this.onDescriptionChanged} defaultValue={this.state.description}></textarea>
                         </div>
                         <div className="form-group py-2">
                             <div>

@@ -10,7 +10,8 @@ const Navbar = () => {
     const [userEmail, setUserEmail] = useState() //If something broke -> sessionStorage.getItem("userEmail")
 
     const history = useHistory();
-    const redirectToLogin = useCallback(() => history.push('/login'), [history]);
+    const logOut = useCallback(() => history.push('/logout'), [history]);
+    const deleteAccount = useCallback(() => history.push('/delete-account'), [history])
     const redirectToAddAdvert = useCallback(() => history.push('/add-advert'), [history]);
     const redirectToMyAdverts = useCallback(() => history.push(`/user/${sessionStorage.getItem("userEmail")}`), [history]);
 
@@ -50,8 +51,8 @@ const Navbar = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="dropdown-menu">
-                            <Dropdown.Item onClick={redirectToLogin}>Log out</Dropdown.Item>
-                            <Dropdown.Item href="#">Delete account</Dropdown.Item>
+                            <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
+                            <Dropdown.Item onClick={deleteAccount}>Delete account</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -91,10 +92,6 @@ const Navbar = () => {
                 </button>
                 <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarSupportedContent">
                     <Display />
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>

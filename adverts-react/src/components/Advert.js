@@ -5,7 +5,8 @@ import noImage from "../img/noImage.jpg"
 const Advert = ({advert}) => {
 
   const history = useHistory();
-  const redirectToDetails = useCallback(() => history.push(`/details/${advert._id}`), [history]);
+  const advId = advert._id
+  const redirectToDetails = useCallback(() => history.push(`/details/${advId}`), [history]);
 
   const baseUrl = "http://localhost:3000/"
 
