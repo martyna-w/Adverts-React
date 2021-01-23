@@ -30,7 +30,7 @@ Navnbar is dynamically rendered to provide user panel.
 ![user_panel](./scr/menus.gif)
 
 ## Crud methods
-Appliaction has support for all crud methods provided by api
+Appliaction has support for all crud methods provided by api.
 
 ![supported_methods](./scr/addvert.gif)
 
@@ -45,7 +45,7 @@ Appliaction has support for all crud methods provided by api
 
 ## Technical stuff
 
-Adverts-React uses axios to fetch data from the api
+Adverts-React uses axios to fetch data from the api.
 
 ![api calls](./scr/axios.png)
 
@@ -53,7 +53,7 @@ App suports token authentication, it stores necessary data in session.
 
 ![api calls 2](./scr/api_call.png)
 
-Aplication uses [simple-react-alert](https://www.npmjs.com/package/simple-react-alert)
+Aplication uses [simple-react-alert](https://www.npmjs.com/package/simple-react-alert).
 
 ![alerts](./scr/alert.png)
 
